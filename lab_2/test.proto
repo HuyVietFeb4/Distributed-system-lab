@@ -1,0 +1,17 @@
+syntax = "proto3";
+package monitoring;
+
+service Monitor {
+  rpc TransmitData (stream MetricData) returns (stream MetricReply) {}
+}
+
+message MetricData {
+  string hostname = 1;
+  string metric = 2;
+  string value = 3;
+  string time = 4;
+}
+
+message MetricReply {
+  string reply = 1;
+}
