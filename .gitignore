@@ -1,0 +1,3 @@
+myenv/
+requirement.txt
+*/__pycache__/*

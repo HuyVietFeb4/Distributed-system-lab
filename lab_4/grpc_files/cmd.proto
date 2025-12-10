@@ -1,0 +1,14 @@
+syntax = "proto3";
+package command;
+
+service Command {
+  rpc SendCommand (Cmd) returns (Reply) {}
+}
+
+message Cmd {
+  string command = 1;
+}
+
+message Reply {
+  string msg = 1;
+}
