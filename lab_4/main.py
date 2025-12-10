@@ -25,7 +25,10 @@ def CmdServe():
 if __name__ == "__main__":
     SendMetricThread = threading.Thread(target=rpc.send_metric_data)
     SendMetricThread.start()
+    CmdServerThread = threading.Thread(target=CmdServe)
+    CmdServerThread.start()
     try:
         SendMetricThread.join()
+        CmdServerThread.join()
     except KeyboardInterrupt:
         pass
