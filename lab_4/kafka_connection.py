@@ -7,9 +7,9 @@ def delivery_report(err, msg):
         print(f"Message delivered to {msg.topic()} [{msg.partition()}]")
 
 class kafka_connection:
-    consumer_conf = { 'bootstrap.servers': 'localhost:9094,localhost:9095', 'group.id': 'grpc_server', 'auto.offset.reset': 'earliest' }
-    producer_conf = { 'bootstrap.servers': 'localhost:9094,localhost:9095' }
-
+    def __init__(self, group_id):
+        self.consumer_conf = { 'bootstrap.servers': 'localhost:9094,localhost:9095', 'group.id': group_id, 'auto.offset.reset': 'earliest' }
+        self.producer_conf = { 'bootstrap.servers': 'localhost:9094,localhost:9095' }
     def consumer(self, topic):
         consumer = Consumer(self.consumer_conf)
         consumer.subscribe([topic])

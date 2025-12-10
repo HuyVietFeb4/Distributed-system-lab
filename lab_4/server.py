@@ -2,7 +2,7 @@ import grpc, subprocess
 
 from lab_4.grpc_files import monitor_pb2, monitor_pb2_grpc
 
-
+from lab_4.kafka_connection import *
 
 from concurrent import futures
 
