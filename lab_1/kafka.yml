@@ -65,7 +65,7 @@ spec:
           if [ "$NODE_ID" = "0" ]; then
             echo "advertised.listeners=PLAINTEXT://kafka-0.kafka-service.kafka.svc.cluster.local:9092,EXTERNAL://localhost:9094" >> /opt/kafka/config/server.properties;
           else
-            echo "advertised.listeners=PLAINTEXT://kafka-1.kafka-service.kafka.svc.cluster.local:9092,EXTERNAL://localhost:9094" >> /opt/kafka/config/server.properties;
+            echo "advertised.listeners=PLAINTEXT://kafka-1.kafka-service.kafka.svc.cluster.local:9092,EXTERNAL://localhost:9095" >> /opt/kafka/config/server.properties;
           fi
           /opt/kafka/bin/kafka-storage.sh format -t $CLUSTER_ID -c /opt/kafka/config/server.properties
           /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties

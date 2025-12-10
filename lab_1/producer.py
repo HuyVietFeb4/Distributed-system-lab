@@ -1,5 +1,5 @@
 from confluent_kafka import Producer
-conf = { 'bootstrap.servers': 'localhost:9094' }
+conf = { 'bootstrap.servers': 'localhost:9094,localhost:9095' }
 
 def delivery_report(err, msg):
     if err is not None:
