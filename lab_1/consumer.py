@@ -1,6 +1,6 @@
 from confluent_kafka import Consumer, KafkaError
 # use earliest to fetch all data and latest to fetch new data only
-conf = { 'bootstrap.servers': 'localhost:9094,localhost:9095', 'group.id': 'hello', 'auto.offset.reset': 'earliest' }
+conf = { 'bootstrap.servers': 'localhost:9094,localhost:9095', 'group.id': 'hollllla', 'auto.offset.reset': 'earliest' }
 consumer = Consumer(conf)
 consumer.subscribe(['dblab'])
 try:
