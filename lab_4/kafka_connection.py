@@ -10,7 +10,7 @@ class kafka_connection:
     def __init__(self, group_id):
         self.consumer_conf = { 'bootstrap.servers': 'localhost:9094,localhost:9095', 'group.id': group_id, 'auto.offset.reset': 'earliest' }
         self.producer_conf = { 'bootstrap.servers': 'localhost:9094,localhost:9095' }
-    def consumer(self, topic):
+    def consume(self, topic):
         consumer = Consumer(self.consumer_conf)
         consumer.subscribe([topic])
         try:
@@ -28,8 +28,8 @@ class kafka_connection:
         finally:
             consumer.close()
 
-    def producer(self, topic, message):
+    def produce(self, topic, message):
         producer = Producer(self.producer_conf)
-        producer.produce(topic, message.encode('utf-8'), callback=delivery_report)
+        producer.produce(topic, message, callback=delivery_report)
         producer.poll(0) # Trigger delivery callback
         producer.flush() # Wait for all messages to be delivered callback
