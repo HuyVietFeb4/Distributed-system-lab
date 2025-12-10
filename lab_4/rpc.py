@@ -1,5 +1,6 @@
 import grpc, time
 from lab_4.grpc_files import monitor_pb2, monitor_pb2_grpc
+from lab_4.grpc_files import cmd_pb2, cmd_pb2_grpc
 
 from lab_4.collect import generate_metric_data
 from lab_4 import config
@@ -19,10 +20,21 @@ def send_metric_data():
         stub = monitor_pb2_grpc.MonitorStub(channel)
         try:
             while True:
-                
                 response = stub.TransmitData(receive_data(), timeout=20.0)
                 print(response.reply)
                 time.sleep(10)
+
+        except grpc.RpcError as e:
+            print("Stream failed:", e.code(), e.details())
+
+def send_command(msg):
+    with grpc.insecure_channel("localhost:50051") as channel:
+        stub = cmd_pb2_grpc.CommandStub(channel)
+        try:
+            while True:
+                response = stub.SendCommand(cmd_pb2.Cmd(command=msg))
+                print(response.msg)
+                time.sleep(1)
 
         except grpc.RpcError as e:
             print("Stream failed:", e.code(), e.details())

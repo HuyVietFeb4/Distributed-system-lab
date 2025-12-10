@@ -22,7 +22,9 @@ class kafka_connection:
                 if msg.error():
                     print(f"Error: {msg.error()}")
                     break
-                print(f"Received message: {msg.value().decode('utf-8')} from {msg.topic()} [{msg.partition()}] at offset {msg.offset()}")
+                decoded_msg = msg.value().decode('utf-8')
+                print(f"Received message: {decoded_msg} from {msg.topic()} [{msg.partition()}] at offset {msg.offset()}")
+                yield decoded_msg
         except KeyboardInterrupt:
             print("Stopping consumer")
         finally:
